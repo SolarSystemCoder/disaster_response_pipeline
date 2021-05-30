@@ -53,7 +53,8 @@ def build_model():
 
 def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = model.predict(X_test)
-    classification_report(Y_test.values, y_pred, target_names=category_names)
+    print(classification_report(Y_test.values, y_pred, target_names=category_names))
+    print('Accuracy: {} '.format(np.mean(Y_test.values == y_pred)))
 
 
 def save_model(model, model_filepath):

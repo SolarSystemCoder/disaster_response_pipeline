@@ -1,5 +1,8 @@
 # disaster_response_pipeline
 
+### Disaster classification project
+This project is for classifying categories based on input text messages. So, in emergency, by classifying text messages to the right category, departments under the categories can support people in need properly
+
 ### Run programs
 ```bash
 cd data

@@ -20,15 +20,30 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """
+    Return Filtered, a column dropped, and duplicates dropped dataframe
+    :param df: dataframe
+    :return: df: dataframe
+    """
+    # only 0 or 1 is allowed as this value should be binary.
     df = df[df['related'] != 2]
+    # child_alone is just one value, so does not affect any performance
     df = df.drop('child_alone', axis=1)
     df.drop_duplicates(inplace=True)
     return df
 
 
 def save_data(df, database_filename):
+    '''
+    Save input dataframe to sqlite.
+    :param df: input dataframe
+    :param database_filename: databased file name to be written
+    :return: nothing
+    '''
+    # database_filename = DisasterResponse.db
     engine = create_engine('sqlite:///{}'.format(database_filename))
     table = database_filename.replace('.db', '_table').replace('data/', '')
+    # if exits, overwrite table
     df.to_sql(table, con = engine, index=False, if_exists = 'replace')  
 
 
